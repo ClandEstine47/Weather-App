@@ -21,6 +21,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.plcoding.weatherapp.presentation.ui.theme.Color1
+import com.plcoding.weatherapp.presentation.ui.theme.Color2
+import com.plcoding.weatherapp.presentation.ui.theme.Color3
+import com.plcoding.weatherapp.presentation.ui.theme.Color4
+import com.plcoding.weatherapp.presentation.ui.theme.Color5
 import com.plcoding.weatherapp.presentation.ui.theme.DarkBlue
 import com.plcoding.weatherapp.presentation.ui.theme.DeepBlue
 import com.plcoding.weatherapp.presentation.ui.theme.WeatherAppTheme
@@ -53,12 +58,12 @@ class MainActivity : ComponentActivity() {
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
-                            .background(DarkBlue)
+                            .background(Color1)
                     ) {
                         WeatherLocationDetail(state = viewModel.state)
                         WeatherCard(
                             state = viewModel.state,
-                            backgroundColor = DeepBlue
+                            backgroundColor = Color2
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         WeatherForecast(state = viewModel.state)
