@@ -42,6 +42,7 @@ class MainActivity : ComponentActivity() {
             )
         )
         setContent {
+            // New Branch App
             WeatherAppTheme {
                 Box(
                     modifier = Modifier
