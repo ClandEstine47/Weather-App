@@ -29,11 +29,10 @@ import com.plcoding.weatherapp.R
 import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
-@Preview(showBackground = true)
 @Composable
 fun WeatherCard(
-    state: WeatherState = WeatherState(),
-    backgroundColor: Color = Color.White,
+    state: WeatherState,
+    backgroundColor: Color,
     modifier: Modifier = Modifier
 ) {
     state.weatherInfo?.currentWeatherData?.let { data ->
