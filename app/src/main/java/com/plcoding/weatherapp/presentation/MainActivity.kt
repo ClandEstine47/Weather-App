@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.plcoding.weatherapp.domain.weather.WeatherInfo
 import com.plcoding.weatherapp.presentation.ui.theme.Color1
 import com.plcoding.weatherapp.presentation.ui.theme.Color2
 import com.plcoding.weatherapp.presentation.ui.theme.Color3
@@ -61,6 +62,7 @@ class MainActivity : ComponentActivity() {
                             .background(Color1)
                     ) {
                         WeatherLocationDetail(state = viewModel.state)
+                        DateInfo()
                         WeatherCard(
                             state = viewModel.state,
                             backgroundColor = Color2
