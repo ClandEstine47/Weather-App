@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.plcoding.weatherapp.domain.weather.WeatherData
 import java.time.LocalDateTime
 
 @Composable
@@ -23,12 +24,17 @@ fun WeatherForecast(
     modifier: Modifier = Modifier
 ) {
     var now = if (LocalDateTime.now().minute > 30) LocalDateTime.now().hour + 1 else LocalDateTime.now().hour
-    var hourlyForecastData = remember(state) {
+    var todayHourlyForecastData = remember(state) {
         state.weatherInfo?.weatherDataPerDay?.get(0)?.filter {
             it.time.hour >= now
         }
     }
-//    state.weatherInfo?.weatherDataPerDay?.get(0)?.let { data ->
+    var tomorrowHourlyForecastData = remember(state) {
+        state.weatherInfo?.weatherDataPerDay?.get(1)?.take(24 - todayHourlyForecastData!!.size)
+    }
+    var hourlyForecastData: List<WeatherData>? = todayHourlyForecastData?.plus(
+        tomorrowHourlyForecastData!!
+    )
     if (!hourlyForecastData.isNullOrEmpty()) {
         Column(
             modifier = modifier
@@ -56,5 +62,4 @@ fun WeatherForecast(
     } else {
         Log.d("ERROR", "WeatherForecast: NULL VALUE")
     }
-//    }
 }
