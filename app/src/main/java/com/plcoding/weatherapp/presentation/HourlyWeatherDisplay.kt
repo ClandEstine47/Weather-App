@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun HourlyWeatherDisplay(
     weatherData: WeatherData,
+    isFirst: Boolean = false,
     modifier: Modifier = Modifier,
     textColor: Color = Color.White
 ) {
@@ -33,7 +34,7 @@ fun HourlyWeatherDisplay(
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            text = formattedTime,
+            text = if (isFirst) "Now" else formattedTime,
             color = Color.LightGray
         )
         Image(
