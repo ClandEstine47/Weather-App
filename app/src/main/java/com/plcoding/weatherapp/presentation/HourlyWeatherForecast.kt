@@ -19,7 +19,7 @@ import com.plcoding.weatherapp.domain.weather.WeatherData
 import java.time.LocalDateTime
 
 @Composable
-fun WeatherForecast(
+fun HourlyWeatherForecast(
     state: WeatherState,
     modifier: Modifier = Modifier
 ) {
