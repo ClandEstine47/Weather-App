@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
@@ -51,6 +53,7 @@ class MainActivity : ComponentActivity() {
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
+                            .verticalScroll(rememberScrollState())
                             .background(Color1)
                     ) {
                         WeatherLocationDetail(state = viewModel.state)
@@ -61,6 +64,8 @@ class MainActivity : ComponentActivity() {
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         HourlyWeatherForecast(state = viewModel.state)
+                        Spacer(modifier = Modifier.height(16.dp))
+                        DailyWeatherForecast(state = viewModel.state)
                     }
                     if (viewModel.state.isLoading) {
                         CircularProgressIndicator(

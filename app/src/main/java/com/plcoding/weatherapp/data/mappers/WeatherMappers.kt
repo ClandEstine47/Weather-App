@@ -54,8 +54,32 @@ fun WeatherDto.toWeatherInfo(): WeatherInfo {
             it.time.hour == now.hour + 1
         }
     }
+
+    var weeklyWeatherType = mutableListOf<Int?>()
+    weatherDataMap.forEach { (_, dailyWeatherData) ->
+        var dailyTypes = mutableListOf<Int>()
+        dailyWeatherData.forEach { weatherData ->
+            dailyTypes.add(weatherData.weatherType.iconRes)
+        }
+        weeklyWeatherType.add(calculateHighestOccurrence(dailyTypes))
+    }
+
     return WeatherInfo(
         weatherDataPerDay = weatherDataMap,
-        currentWeatherData = currentWeatherData
+        currentWeatherData = currentWeatherData,
+        weatherTypePerDay = weeklyWeatherType
     )
+}
+
+fun calculateHighestOccurrence(dailyTypes: MutableList<Int>): Int? {
+    var map = HashMap<Int, Int>()
+    dailyTypes.forEach {
+        if (map.containsKey(it)) {
+            map[it] = map.getValue(it) + 1
+        } else {
+            map[it] = 1
+        }
+    }
+    val entryWithLargestValue = map.entries.maxByOrNull { it.value }
+    return entryWithLargestValue?.key
 }
