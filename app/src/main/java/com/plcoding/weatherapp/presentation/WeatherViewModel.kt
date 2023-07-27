@@ -16,6 +16,9 @@ import com.plcoding.weatherapp.domain.util.Resource
 import dagger.hilt.android.internal.Contexts.getApplication
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.util.Locale
 import javax.inject.Inject
@@ -29,6 +32,23 @@ class WeatherViewModel @Inject constructor(
 
     var state by mutableStateOf(WeatherState())
         private set
+
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading = _isLoading.asStateFlow()
+
+    init {
+        loadData()
+    }
+
+    fun loadData() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            loadWeatherInfo()
+            delay(3000L)
+            _isLoading.value = false
+        }
+    }
+
     fun loadWeatherInfo() {
         viewModelScope.launch {
             state = state.copy(
