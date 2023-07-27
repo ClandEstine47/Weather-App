@@ -58,17 +58,6 @@ fun WeatherCard(
             ) {
                 WeatherDataDisplay(value = 30, unit = "°C", icon = Icons.Default.ArrowBack, rotation = 90f, iconTint = Color.White, textStyle = TextStyle(color = Color.White))
                 WeatherDataDisplay(value = 24, unit = "°C", icon = Icons.Default.ArrowForward, rotation = 90f, textStyle = TextStyle(color = Color.White))
-//               Row {
-//                   Icon(
-//                       imageVector = Icons.Default.ArrowBack,
-//                       contentDescription = "Highest temperature",
-//                       tint = Color.White,
-//                       modifier = Modifier
-//                           .padding(horizontal = 5.dp, vertical = 5.dp)
-//                           .rotate(90f)
-//                   )
-//                   Spacer(modifier = Modifier.width(5.dp))
-//                   Text(text = "5")
             }
             Column(
                 modifier = Modifier
