@@ -56,8 +56,8 @@ fun WeatherCard(
                     .padding(20.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                WeatherDataDisplay(value = 30, unit = "°C", icon = Icons.Default.ArrowBack, rotation = 90f, iconTint = Color.White, textStyle = TextStyle(color = Color.White))
-                WeatherDataDisplay(value = 24, unit = "°C", icon = Icons.Default.ArrowForward, rotation = 90f, textStyle = TextStyle(color = Color.White))
+                state.weatherInfo?.weatherTemperature?.get(1)?.let { WeatherDataDisplay(value = it.roundToInt(), unit = "°C", icon = Icons.Default.ArrowBack, rotation = 90f, iconTint = Color.White, textStyle = TextStyle(color = Color.White)) }
+                state.weatherInfo?.weatherTemperature?.get(0)?.let { WeatherDataDisplay(value = it.roundToInt(), unit = "°C", icon = Icons.Default.ArrowForward, rotation = 90f, iconTint = Color.White, textStyle = TextStyle(color = Color.White)) }
             }
             Column(
                 modifier = Modifier
@@ -73,7 +73,7 @@ fun WeatherCard(
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "${data.temperatureCelsius}°C",
+                    text = "${data.temperatureCelsius.roundToInt()}°C",
                     fontSize = 50.sp,
                     color = Color.White
                 )
