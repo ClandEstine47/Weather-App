@@ -23,6 +23,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.Locale
+import kotlin.math.roundToInt
 
 @Composable
 fun DailyWeatherForecast(
@@ -71,8 +72,10 @@ fun DailyWeatherForecast(
                                 dayWeek = todayWeek.plus(index.toLong()).getDisplayName(TextStyle.SHORT, Locale.getDefault()),
                                 month = month.plusDays(index.toLong()).format(DateTimeFormatter.ofPattern("MMM d")),
                                 description = weeklyWeatherTypeDescription[index],
+                                highestTemperature = state.weatherInfo?.weatherTemperature?.get(index)?.get(1)!!.roundToInt(),
+                                lowestTemperature = state.weatherInfo?.weatherTemperature?.get(index)?.get(0)!!.roundToInt(),
                                 modifier = Modifier
-                                    .height(120.dp)
+                                    .height(180.dp)
                                     .width(90.dp)
                                     .padding(horizontal = 16.dp)
                             )

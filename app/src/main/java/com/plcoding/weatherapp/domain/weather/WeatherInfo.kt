@@ -5,5 +5,5 @@ data class WeatherInfo(
     val currentWeatherData: WeatherData?,
     val weatherTypePerDayImage: MutableList<Int?>,
     val weatherTypePerDayDescription: MutableList<String?>,
-    val weatherTemperature: MutableList<Double>
+    val weatherTemperature: MutableList<List<Double>>
 )

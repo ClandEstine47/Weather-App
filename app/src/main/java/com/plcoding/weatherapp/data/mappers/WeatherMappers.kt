@@ -57,7 +57,7 @@ fun WeatherDto.toWeatherInfo(): WeatherInfo {
 
     var weeklyWeatherTypeImage = mutableListOf<Int?>()
     var weeklyWeatherTypeDescription = mutableListOf<String?>()
-    var weeklyWeatherTypeTemperature = mutableListOf<Double>()
+    var weeklyWeatherTypeTemperature = mutableListOf<List<Double>>()
 
     weatherDataMap.forEach { (_, dailyWeatherData) ->
         var dailyTypesImage = mutableListOf<Int>()
@@ -71,8 +71,8 @@ fun WeatherDto.toWeatherInfo(): WeatherInfo {
         weeklyWeatherTypeImage.add(calculateHighestOccurrenceImage(dailyTypesImage))
         weeklyWeatherTypeDescription.add(calculateHighestOccurrenceDescription(dailyTypesDescription))
         val sortedTemperatureList = dailyTypesTemperature.sorted()
-        weeklyWeatherTypeTemperature.add(sortedTemperatureList.first())
-        weeklyWeatherTypeTemperature.add(sortedTemperatureList.last())
+        val tempPerDay = listOf<Double>(sortedTemperatureList.first(), sortedTemperatureList.last())
+        weeklyWeatherTypeTemperature.add(tempPerDay)
     }
 
     return WeatherInfo(
