@@ -7,6 +7,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -66,24 +67,25 @@ class MainActivity : ComponentActivity() {
                                 .verticalScroll(rememberScrollState())
                                 .background(Color1)
                         ) {
-                            WeatherLocationDetail(state = viewModel.state)
-                            DateInfo()
-                            WeatherCard(
-                                state = viewModel.state,
-                                backgroundColor = Color2
-                            )
-                            HourlyWeatherForecast(state = viewModel.state)
-                            DailyWeatherForecast(state = viewModel.state)
-                            Spacer(modifier = Modifier.height(32.dp))
+                            viewModel.state.error?.let { error ->
+                                Spacer(modifier = Modifier.height(350.dp))
+                                    Text(
+                                        text = error,
+                                        color = Color.Red,
+                                        textAlign = TextAlign.Center,
+                                    )
+                            } ?: kotlin.run {
+                                WeatherLocationDetail(state = viewModel.state)
+                                DateInfo()
+                                WeatherCard(
+                                    state = viewModel.state,
+                                    backgroundColor = Color2
+                                )
+                                HourlyWeatherForecast(state = viewModel.state)
+                                DailyWeatherForecast(state = viewModel.state)
+                                Spacer(modifier = Modifier.height(32.dp))
+                            }
                         }
-                    }
-                    viewModel.state.error?.let { error ->
-                        Text(
-                            text = error,
-                            color = Color.Red,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.align(Alignment.Center)
-                        )
                     }
                 }
 
