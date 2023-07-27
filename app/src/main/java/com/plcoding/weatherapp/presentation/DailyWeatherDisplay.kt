@@ -42,12 +42,10 @@ fun DailyWeatherDisplay(
             contentDescription = "image",
             modifier = Modifier.width(40.dp)
         )
-        Text(
-            text = description!!,
-            color = textColor,
-            fontWeight = FontWeight.Bold,
-            overflow = TextOverflow.Ellipsis,
-            maxLines = 1
+        TypewriterText(
+            texts = listOf(
+                description!!
+            ),
         )
     }
 }
