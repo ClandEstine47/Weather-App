@@ -13,10 +13,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
@@ -42,6 +50,26 @@ fun WeatherCard(
             modifier = modifier
                 .padding(16.dp)
         ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                WeatherDataDisplay(value = 30, unit = "°C", icon = Icons.Default.ArrowBack, rotation = 90f, iconTint = Color.White, textStyle = TextStyle(color = Color.White))
+                WeatherDataDisplay(value = 24, unit = "°C", icon = Icons.Default.ArrowForward, rotation = 90f, textStyle = TextStyle(color = Color.White))
+//               Row {
+//                   Icon(
+//                       imageVector = Icons.Default.ArrowBack,
+//                       contentDescription = "Highest temperature",
+//                       tint = Color.White,
+//                       modifier = Modifier
+//                           .padding(horizontal = 5.dp, vertical = 5.dp)
+//                           .rotate(90f)
+//                   )
+//                   Spacer(modifier = Modifier.width(5.dp))
+//                   Text(text = "5")
+            }
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
